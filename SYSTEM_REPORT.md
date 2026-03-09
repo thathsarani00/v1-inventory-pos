@@ -435,7 +435,7 @@ Response: 201 Created
 cors:
   allowed-origins: 
     - http://localhost:5173
-    - http://localhost:3000
+    - http://localost:3000
   allowed-methods: GET, POST, PUT, DELETE, OPTIONS
   allowed-headers: "*"
   allow-credentials: true

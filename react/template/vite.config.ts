@@ -6,13 +6,8 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   server: {
-    port: 5173,
-    proxy: {
-      '/v1': {
-        target: 'http://localhost:5555',
-        changeOrigin: true,
-      }
-    }
+    port: 3000,
+    host: true
   },
   build: {
     outDir: 'dist',

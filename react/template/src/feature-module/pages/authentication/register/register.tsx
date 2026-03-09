@@ -97,7 +97,17 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      const response = await register(formData.name, formData.email, formData.password);
+      // Split name into firstName and lastName
+      const nameParts = formData.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || nameParts[0] || '';
+
+      const response = await register({
+        firstName,
+        lastName,
+        email: formData.email,
+        password: formData.password,
+      });
 
       if (response.success) {
         // Redirect to dashboard on success

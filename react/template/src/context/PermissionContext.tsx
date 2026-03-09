@@ -7,7 +7,7 @@ import React, {
   useCallback,
 } from "react";
 import axiosInstance from "../utils/axiosConfig";
-import { getCurrentUser, getAuthToken, isAuthenticated } from "../utils/auth";
+import { getCurrentUser, isAuthenticated } from "../utils/auth";
 import type { UserPermissions, Permission, Role, Module } from "../utils/permissions";
 import {
   ROLES,
