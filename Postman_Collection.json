@@ -1,0 +1,106 @@
+{
+  "info": {
+    "name": "Inventory Management API",
+    "description": "Authentication endpoints for Inventory Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Akila\",\n  \"lastName\": \"Eranda\",\n  \"email\": \"akila@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"0771234567\"\n}"
+            },
+            "url": {
+              "raw": "http://45.8.149.194:5555/v1/auth/register",
+              "protocol": "http",
+              "host": ["45", "8", "149", "194"],
+              "port": "5555",
+              "path": ["v1", "auth", "register"]
+            },
+            "description": "Register a new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"akila@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://45.8.149.194:5555/v1/auth/login",
+              "protocol": "http",
+              "host": ["45", "8", "149", "194"],
+              "port": "5555",
+              "path": ["v1", "auth", "login"]
+            },
+            "description": "Login with existing credentials"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users (Protected)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "JWT token from login/register"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://45.8.149.194:5555/v1/users",
+              "protocol": "http",
+              "host": ["45", "8", "149", "194"],
+              "port": "5555",
+              "path": ["v1", "users"]
+            },
+            "description": "Get all users - requires authentication token"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://45.8.149.194:5555/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

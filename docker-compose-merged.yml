@@ -54,6 +54,25 @@ services:
     depends_on:
       - app
 
+  # phpMyAdmin (Database Management)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: inventory-phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    networks:
+      - inventory-network
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+
 volumes:
   mysql_data:
     driver: local

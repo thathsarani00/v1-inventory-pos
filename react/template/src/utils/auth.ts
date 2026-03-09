@@ -93,7 +93,7 @@ export const register = async (data: RegisterData): Promise<AuthResponse> => {
       // Check for validation errors (field-specific)
       if (data.errors && typeof data.errors === 'object') {
         const fieldErrors = Object.entries(data.errors)
-          .map(([field, msg]) => `${msg}`)
+          .map(([_field, msg]) => `${msg}`)
           .join(', ');
         errorMessage = fieldErrors;
       } 

@@ -1,10 +1,12 @@
 import axios from 'axios';
 import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { API_BASE_URL } from '../environment';
+
+// Production API Base URL (hard-coded to ensure it's in the build)
+const API_BASE_URL = "http://45.8.149.194:5555/v1";
 
 /**
  * Axios instance configured for Spring Boot backend
- * Base URL: from environment configuration
+ * Base URL: Production server (hard-coded)
  * Automatically attaches JWT tokens and handles authentication errors
  * Implements automatic token refresh on 401 errors
  */
