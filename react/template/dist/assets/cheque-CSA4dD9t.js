@@ -1,1 +1,0 @@
-const s="/v1/assets/cash-icon-BT1j_FoZ.svg",t="/v1/assets/card-BzzrBEf7.svg",a="/v1/assets/points-CtfS4AdT.svg",c="/v1/assets/deposit-CWvzEdRr.svg",e="/v1/assets/cheque-D5eKii0P.svg";export{t as a,e as b,s as c,c as d,a as p};
