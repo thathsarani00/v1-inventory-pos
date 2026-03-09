@@ -85,9 +85,27 @@ export const register = async (data: RegisterData): Promise<AuthResponse> => {
     };
   } catch (error: any) {
     // Handle error response
-    const errorMessage = error.response?.data?.message || 
-                        error.response?.data?.error || 
-                        'Registration failed. Please try again.';
+    let errorMessage = 'Registration failed. Please try again.';
+    
+    if (error.response?.data) {
+      const data = error.response.data;
+      
+      // Check for validation errors (field-specific)
+      if (data.errors && typeof data.errors === 'object') {
+        const fieldErrors = Object.entries(data.errors)
+          .map(([field, msg]) => `${msg}`)
+          .join(', ');
+        errorMessage = fieldErrors;
+      } 
+      // Check for general error message
+      else if (data.message) {
+        errorMessage = data.message;
+      }
+      // Check for error property
+      else if (data.error) {
+        errorMessage = data.error;
+      }
+    }
     
     return {
       success: false,

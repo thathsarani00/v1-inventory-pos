@@ -1,14 +1,15 @@
 import axios from 'axios';
 import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { API_BASE_URL } from '../environment';
 
 /**
  * Axios instance configured for Spring Boot backend
- * Base URL: http://localhost:5555/v1
+ * Base URL: from environment configuration
  * Automatically attaches JWT tokens and handles authentication errors
  * Implements automatic token refresh on 401 errors
  */
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5555/v1',
+  baseURL: API_BASE_URL,
   timeout: 10000, // 10 seconds timeout
   headers: {
     'Content-Type': 'application/json',

@@ -68,8 +68,8 @@ const Register = () => {
 
     if (!formData.password) {
       newErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
     }
 
     if (!formData.confirmPassword) {
@@ -115,8 +115,17 @@ const Register = () => {
       } else {
         setSubmitError(response.message);
       }
-    } catch (error) {
-      setSubmitError("An error occurred. Please try again.");
+    } catch (error: any) {
+      // Handle validation errors from backend
+      if (error.response?.data?.errors) {
+        const backendErrors = error.response.data.errors;
+        const errorMessages = Object.entries(backendErrors)
+          .map(([field, msg]) => `${field}: ${msg}`)
+          .join(", ");
+        setSubmitError(errorMessages);
+      } else {
+        setSubmitError(error.response?.data?.message || "An error occurred. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
