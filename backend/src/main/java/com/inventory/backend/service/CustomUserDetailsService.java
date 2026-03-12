@@ -2,7 +2,6 @@ package com.inventory.backend.service;
 
 import com.inventory.backend.model.User;
 import com.inventory.backend.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,10 +13,13 @@ import org.springframework.stereotype.Service;
  * Checks account status including locked accounts due to failed login attempts.
  */
 @Service
-@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     
     private final UserRepository userRepository;
+
+    public CustomUserDetailsService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     
     /**
      * Loads user by username (email in our case).

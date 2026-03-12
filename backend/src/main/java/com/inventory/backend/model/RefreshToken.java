@@ -1,10 +1,6 @@
 package com.inventory.backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.Instant;
 
@@ -17,10 +13,6 @@ import java.time.Instant;
     @Index(name = "idx_token", columnList = "token"),
     @Index(name = "idx_user_id", columnList = "user_id")
 })
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class RefreshToken {
     
     @Id
@@ -36,6 +28,27 @@ public class RefreshToken {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public RefreshToken() {}
+
+    public RefreshToken(Long id, String token, Instant expiryDate, User user) {
+        this.id = id;
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.user = user;
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
+
+    public Instant getExpiryDate() { return expiryDate; }
+    public void setExpiryDate(Instant expiryDate) { this.expiryDate = expiryDate; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
     
     /**
      * Check if the refresh token has expired.

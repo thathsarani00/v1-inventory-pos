@@ -3,7 +3,6 @@ package com.inventory.backend.service;
 import com.inventory.backend.model.RefreshToken;
 import com.inventory.backend.model.User;
 import com.inventory.backend.repository.RefreshTokenRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +15,13 @@ import java.util.UUID;
  * Handles creation, verification, and deletion of refresh tokens.
  */
 @Service
-@RequiredArgsConstructor
 public class RefreshTokenService {
     
     private final RefreshTokenRepository refreshTokenRepository;
+
+    public RefreshTokenService(RefreshTokenRepository refreshTokenRepository) {
+        this.refreshTokenRepository = refreshTokenRepository;
+    }
     
     // Refresh token validity: 7 days in seconds
     private static final long REFRESH_TOKEN_VALIDITY = 7 * 24 * 60 * 60L;

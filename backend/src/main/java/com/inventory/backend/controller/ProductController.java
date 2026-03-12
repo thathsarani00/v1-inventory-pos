@@ -2,7 +2,6 @@ package com.inventory.backend.controller;
 
 import com.inventory.backend.model.Product;
 import com.inventory.backend.service.ProductService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +10,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class ProductController {
     
     private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
     
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {

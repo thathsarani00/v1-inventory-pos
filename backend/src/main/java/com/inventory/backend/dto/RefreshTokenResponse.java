@@ -1,25 +1,35 @@
 package com.inventory.backend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * DTO for refresh token responses.
  * Contains the new access token and the refresh token.
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RefreshTokenResponse {
     
     private String accessToken;
     private String refreshToken;
     private String tokenType = "Bearer";
-    
+
+    public RefreshTokenResponse() {}
+
+    public RefreshTokenResponse(String accessToken, String refreshToken, String tokenType) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.tokenType = tokenType;
+    }
+
     public RefreshTokenResponse(String accessToken, String refreshToken) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.tokenType = "Bearer";
     }
+
+    public String getAccessToken() { return accessToken; }
+    public void setAccessToken(String accessToken) { this.accessToken = accessToken; }
+
+    public String getRefreshToken() { return refreshToken; }
+    public void setRefreshToken(String refreshToken) { this.refreshToken = refreshToken; }
+
+    public String getTokenType() { return tokenType; }
+    public void setTokenType(String tokenType) { this.tokenType = tokenType; }
 }

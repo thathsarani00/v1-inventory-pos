@@ -2,17 +2,19 @@ package com.inventory.backend.service;
 
 import com.inventory.backend.model.Product;
 import com.inventory.backend.repository.ProductRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
     
     private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
     
     public List<Product> getAllProducts() {
         return productRepository.findAll();

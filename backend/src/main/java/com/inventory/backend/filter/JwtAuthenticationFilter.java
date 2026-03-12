@@ -5,7 +5,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,19 +21,19 @@ import java.io.IOException;
 /**
  * JWT Authentication Filter that extends OncePerRequestFilter.
  * This filter intercepts every request to validate JWT tokens and set authentication.
- * 
- * Process:
- * 1. Intercepts the 'Authorization' header
- * 2. Extracts JWT if it starts with 'Bearer '
- * 3. Validates the token using JwtService
- * 4. Sets authentication in SecurityContextHolder if valid
  */
 @Component
-@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
     
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
+
+    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsService userDetailsService) {
+        this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
+    }
     
     /**
      * Main filter method that processes each request once per request.

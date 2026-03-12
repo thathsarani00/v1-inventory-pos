@@ -1,10 +1,6 @@
 package com.inventory.backend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,10 +19,6 @@ import java.util.Collections;
     @Index(name = "idx_role", columnList = "role"),
     @Index(name = "idx_active", columnList = "active")
 })
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class User implements UserDetails {
     
     @Id
@@ -84,7 +76,65 @@ public class User implements UserDetails {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-    
+
+    // ========== Constructors ==========
+
+    public User() {}
+
+    public User(Long id, String firstName, String lastName, String email, String password,
+                String phone, String role, Boolean active, Integer failedAttempt,
+                Boolean accountNonLocked, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.active = active;
+        this.failedAttempt = failedAttempt;
+        this.accountNonLocked = accountNonLocked;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    // ========== Getters and Setters ==========
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
+
+    public Integer getFailedAttempt() { return failedAttempt; }
+    public void setFailedAttempt(Integer failedAttempt) { this.failedAttempt = failedAttempt; }
+
+    public Boolean getAccountNonLocked() { return accountNonLocked; }
+    public void setAccountNonLocked(Boolean accountNonLocked) { this.accountNonLocked = accountNonLocked; }
+
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
     // ========== UserDetails Interface Methods ==========
     
     /**

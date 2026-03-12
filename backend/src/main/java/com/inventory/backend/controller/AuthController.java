@@ -11,7 +11,6 @@ import com.inventory.backend.service.JwtService;
 import com.inventory.backend.service.RefreshTokenService;
 import com.inventory.backend.service.UserService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +29,6 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class AuthController {
     
@@ -38,6 +36,15 @@ public class AuthController {
     private final JwtService jwtService;
     private final RefreshTokenService refreshTokenService;
     private final AuthenticationManager authenticationManager;
+
+    public AuthController(UserService userService, JwtService jwtService,
+                          RefreshTokenService refreshTokenService,
+                          AuthenticationManager authenticationManager) {
+        this.userService = userService;
+        this.jwtService = jwtService;
+        this.refreshTokenService = refreshTokenService;
+        this.authenticationManager = authenticationManager;
+    }
     
     /**
      * Login endpoint that authenticates user and returns JWT token.

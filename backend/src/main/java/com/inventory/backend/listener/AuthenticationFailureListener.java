@@ -1,7 +1,6 @@
 package com.inventory.backend.listener;
 
 import com.inventory.backend.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,13 @@ import org.springframework.stereotype.Component;
  * Locks the account after 5 consecutive failed attempts.
  */
 @Component
-@RequiredArgsConstructor
 public class AuthenticationFailureListener implements ApplicationListener<AuthenticationFailureBadCredentialsEvent> {
     
     private final UserService userService;
+
+    public AuthenticationFailureListener(UserService userService) {
+        this.userService = userService;
+    }
     
     /**
      * Called when an authentication failure event occurs (bad credentials).

@@ -2,7 +2,6 @@ package com.inventory.backend.listener;
 
 import com.inventory.backend.model.User;
 import com.inventory.backend.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,13 @@ import org.springframework.stereotype.Component;
  * Resets the failed login attempt counter to 0 after a successful login.
  */
 @Component
-@RequiredArgsConstructor
 public class AuthenticationSuccessListener implements ApplicationListener<AuthenticationSuccessEvent> {
     
     private final UserService userService;
+
+    public AuthenticationSuccessListener(UserService userService) {
+        this.userService = userService;
+    }
     
     /**
      * Called when an authentication success event occurs.
