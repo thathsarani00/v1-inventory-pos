@@ -2,7 +2,7 @@ import axios from 'axios';
 import type { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 // Production API Base URL (hard-coded to ensure it's in the build)
-const API_BASE_URL = "http://45.8.149.194:5555/v1";
+const API_BASE_URL = "http://207.180.193.135:5555/v1";
 
 /**
  * Axios instance configured for Spring Boot backend
