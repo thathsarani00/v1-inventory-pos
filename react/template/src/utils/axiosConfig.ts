@@ -129,7 +129,7 @@ axiosInstance.interceptors.response.use(
       try {
         // Call refresh endpoint to get new access token
         const response = await axios.post(
-          'http://localhost:5555/v1/auth/refresh',
+          `${API_BASE_URL}/auth/refresh`,
           { refreshToken },
           {
             headers: {
